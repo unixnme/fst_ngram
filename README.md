@@ -13,6 +13,6 @@ http://www.openfst.org/twiki/bin/view/GRM/NGramLibrary
 mkdir test && cd test
 ../run.sh ../test.arpa "i also little more ." 
 ```
-Follow the sentence `i also little more .` token by token in the `fst.pdf` graph or `text.fst.conv` from state 0
+Follow the sentence `i also little more .` token by token in the `fst.pdf` graph or `text.fst.conv` from the initial state
 , and add all the transition weights and final state weights.<br>
  The sum will equal to the probability of the given sentence, including `<s>` and `</s>` tokens.

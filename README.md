@@ -14,5 +14,5 @@ mkdir test && cd test
 ../run.sh ../test.arpa "i also little more ." 
 ```
 Follow the sentence `i also little more .` token by token in the `fst.pdf` graph or `text.fst.conv` from state 0
-, and add all the transition weights and initial/final state weights.<br>
+, and add all the transition weights and final state weights.<br>
  The sum will equal to the probability of the given sentence, including `<s>` and `</s>` tokens.

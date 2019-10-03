@@ -16,6 +16,14 @@ fstcompile --isymbols=isyms.txt --osymbols=osyms.txt --keep_isymbols --keep_osym
 fstdraw --portrait --isymbols=isyms.txt --osymbols=osyms.txt binary.fst.conv fst.dot
 dot -Tpdf fst.dot > fst.pdf
 
+# create weight-pushed fst and repeat
+fstpush --push_weights binary.fst binary.wp.fst
+fstprint --save_isymbols=isyms.txt --save_osymbols=osyms.txt binary.wp.fst text.wp.fst
+python ../convert_to_log10.py text.wp.fst
+fstcompile --isymbols=isyms.txt --osymbols=osyms.txt --keep_isymbols --keep_osymbols text.wp.fst.conv binary.wp.fst.conv
+fstdraw --portrait --isymbols=isyms.txt --osymbols=osyms.txt binary.wp.fst.conv fst.wp.dot
+dot -Tpdf fst.wp.dot > fst.wp.pdf
+
 # convert string input to far
 echo $2 > input.txt
 farcompilestrings --generate_keys=1 -symbols=isyms.txt --keep_symbols input.txt input.far
@@ -27,4 +35,5 @@ echo
 
 # run perplexity analysis for the given sentence
 ngramperplexity --v=1 binary.fst input.far
+ngramperplexity --v=1 binary.wp.fst input.far
 

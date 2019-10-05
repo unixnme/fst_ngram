@@ -1,169 +1,58 @@
-1	0	<epsilon>	<epsilon>	1.44446633487
-1	35	looking	looking	1.5679849622
-1	26	screening	screening	2.06647229433
-1	28	the	the	2.37431630502
-1	31	watching	watching	2.21039579188
-1	32	what	what	2.40205301721
-0	2	,	,	1.10683119931
-0	3	.	.	0.169799837665
-0	4	<unk>	<unk>	7.00238555746
-0	5	a	a	1.18054739357
-0	6	also	also	1.98890198844
-0	7	beyond	beyond	1.98890198844
-0	8	biarritz	biarritz	0.989206599543
-0	9	call	call	1.98683152424
-0	10	concerns	concerns	1.57362561802
-0	11	consider	consider	1.21282574898
-0	12	considering	considering	1.50503525387
-0	13	for	for	1.694622015
-0	14	higher	higher	1.39548832301
-0	15	however	however	1.694622015
-0	16	i	i	1.98890198844
-0	17	immediate	immediate	1.86583512291
-0	18	in	in	1.28141610878
-0	19	is	is	1.98890198844
-0	20	little	little	1.07931544748
-0	21	loin	loin	1.02485944914
-0	22	look	look	1.98890198844
-0	23	looking	looking	1.49384672057
-0	24	more	more	0.709621162306
-0	25	on	on	1.39297841794
-0	26	screening	screening	1.49505321235
-0	27	small	small	0.989206599543
-0	28	the	the	1.96116527625
-0	29	to	to	1.98890198844
-0	30	watch	watch	0.920616239743
-0	31	watching	watching	1.79724476311
-0	32	what	what	1.98890198844
-0	33	would	would	1.98890198844
-0	34	foo	foo	9.14159201501
-0	0	bar	bar	2.71828077018
-0	0	baz	baz	6.53589721648
+1	0	<epsilon>	<epsilon>	1.28715357752
+1	10	I	I	1.27611735564
+1	14	CAT	CAT	1.46532928588
+1	17	DOG	DOG	1.32215554998
+0	0	<unk>	<unk>	1.15009420849
+0	2	I	I	0.880215387551
+0	3	LOVE	LOVE	0.772520231896
+0	4	A	A	0.601132759094
+0	5	CAT	CAT	0.57855874428
+0	6	DOG	DOG	0.520535034144
+0	7	LIKES	LIKES	0.578006130609
+0	8	HATES	HATES	0.503724167905
+0	9	THE	THE	0.404434189135
 0
-2	0	<epsilon>	<epsilon>	0.577712894975
-2	3	.	.
-2	15	however	however	1.03564229928
-2	19	is	is	1.32992227272
-3	0	<epsilon>	<epsilon>	1.81435518397
-3
-4	0	<epsilon>	<epsilon>	14.9932489379
-4	4	<unk>	<unk>	15.0000000022
-4	44	however	however
-5	0	<epsilon>	<epsilon>	0.804363493725
-5	36	little	little
-6	0	<epsilon>	<epsilon>
-6	9	call	call	0.290138941242
-6	43	would	would	8.00000093636
-7	0	<epsilon>	<epsilon>
-7	17	immediate	immediate	0.16914264458
-8	0	<epsilon>	<epsilon>	0.999695388893
-8	3	.	.
-9	0	<epsilon>	<epsilon>	0.00207056683573
-9	13	for	for
-10	0	<epsilon>	<epsilon>	0.415276371722
-10	18	in	in
-11	0	<epsilon>	<epsilon>	0.776076239457
-11	55	higher	higher	1.81058887799
-11	30	watch	watch
-12	0	<epsilon>	<epsilon>	0.483866734563
-12	11	consider	consider
-13	0	<epsilon>	<epsilon>	0.294280075061
-13	2	,	,
-14	0	<epsilon>	<epsilon>	0.415100761274
-14	23	looking	looking	1.90894768813
-14	24	more	more	0.168524073304
-14	27	small	small
-15	0	<epsilon>	<epsilon>	0.294280075061
-15	2	,	,
-15	4	<unk>	<unk>	7.29666467099
-16	0	<epsilon>	<epsilon>
-16	33	would	would	0.292209507934
-17	0	<epsilon>	<epsilon>	0.123066863354
-17	10	concerns	concerns
-18	0	<epsilon>	<epsilon>	0.707485827541
-18	8	biarritz	biarritz
-19	0	<epsilon>	<epsilon>
-19	29	to	to	0.292209507934
-20	0	<epsilon>	<epsilon>	0.905595544045
-20	37	more	more
-21	0	<epsilon>	<epsilon>	0.65968454092
-21	2	,	,	0.80933608737
-21	3	.	.	0.0819716463788
-21
-22	0	<epsilon>	<epsilon>
-22	5	a	a	1.18054760203
-22	7	beyond	beyond	0.292209507934
-23	0	<epsilon>	<epsilon>	0.269215416571
-23	14	higher	higher	0.141913712112
-23	38	on	on
-24	0	<epsilon>	<epsilon>	1.04076596226
-24	39	.	.
-24	21	loin	loin	0.494209935373
-25	0	<epsilon>	<epsilon>	0.593701932736
-25	40	a	a
-26	0	<epsilon>	<epsilon>	0.491627034086
-26	41	a	a
-27	0	<epsilon>	<epsilon>	0.999695388893
-27	3	.	.
-28	0	<epsilon>	<epsilon>	0.027736711531
-28	26	screening	screening
-29	0	<epsilon>	<epsilon>
-29	42	look	look	6.88578604467
-30	0	<epsilon>	<epsilon>	1.06828574869
-30
-31	0	<epsilon>	<epsilon>	0.191657224457
-31	12	considering	considering
-32	0	<epsilon>	<epsilon>
-32	16	i	i	0.292209507934
-33	0	<epsilon>	<epsilon>
-33	6	also	also	0.292209507934
-33	50	consider	consider	1.98890198844
-34	0	<epsilon>	<epsilon>	inf
-34	0	bar	bar
-35	23	<epsilon>	<epsilon>	0.631187505045
-35	14	higher	higher	0.180926351546
-35	48	on	on
-36	20	<epsilon>	<epsilon>	0.689063455169
-36	47	more	more
-37	24	<epsilon>	<epsilon>
-37	21	loin	loin	0.12741446381
-38	25	<epsilon>	<epsilon>	0.616525071894
-38	49	a	a
-39	3	<epsilon>	<epsilon>	0.518191941584
-39
-40	5	<epsilon>	<epsilon>	0.653301680175
-40	45	little	little
-41	5	<epsilon>	<epsilon>	0.551226785869
-41	46	little	little
-42	22	<epsilon>	<epsilon>	inf
-42	5	a	a
-43	33	<epsilon>	<epsilon>
-43	51	consider	consider	5.90687564224
-44	15	<epsilon>	<epsilon>
-44	4	<unk>	<unk>	10.0000005516
-45	36	<epsilon>	<epsilon>	0.590336289476
-45	53	more	more
-46	36	<epsilon>	<epsilon>	0.488261395169
-46	47	more	more
-47	37	<epsilon>	<epsilon>	0.0105825462321
-47	21	loin	loin
-48	38	<epsilon>	<epsilon>	0.51613390255
-48	54	a	a
-49	40	<epsilon>	<epsilon>	0.499883106819
-49	52	little	little
-50	11	<epsilon>	<epsilon>	inf
-50	56	higher	higher	inf
-51	50	<epsilon>	<epsilon>	6.99999989101
-51	57	higher	higher
-52	45	<epsilon>	<epsilon>	0.480772012886
-52	53	more	more
-53	47	<epsilon>	<epsilon>	0.579196106176
-53	21	loin	loin
-54	49	<epsilon>	<epsilon>	0.483309200336
-54	52	little	little
-55	14	<epsilon>	<epsilon>	inf
-55	23	looking	looking	inf
-56	55	<epsilon>	<epsilon>	inf
-56	23	looking	looking	inf
-57	56	<epsilon>	<epsilon>	8.0000001112
-57	23	looking	looking
+2	0	<epsilon>	<epsilon>	0.380448561343
+2	11	LOVE	LOVE
+3	0	<epsilon>	<epsilon>	0.488143610162
+3	12	A	A
+4	0	<epsilon>	<epsilon>	0.686020822773
+4	15	CAT	CAT	0.252988642102
+4	18	DOG	DOG
+5	0	<epsilon>	<epsilon>	0.872565463971
+5	19	LIKES	LIKES	0.696348080633
+5
+6	0	<epsilon>	<epsilon>	0.766618595496
+6	20	HATES	HATES	0.379091153094
+6
+7	0	<epsilon>	<epsilon>	0.682657820023
+7	13	A	A
+8	0	<epsilon>	<epsilon>	0.756939778383
+8	21	THE	THE
+9	0	<epsilon>	<epsilon>	0.85622970721
+9	16	CAT	CAT
+10	2	<epsilon>	<epsilon>	0.447502745126
+10	11	LOVE	LOVE
+11	3	<epsilon>	<epsilon>	0.449143605223
+11	12	A	A
+12	4	<epsilon>	<epsilon>	0.36151007645
+12	15	CAT	CAT	0.0735991405988
+12	18	DOG	DOG
+13	4	<epsilon>	<epsilon>	0.556024285007
+13	18	DOG	DOG
+14	5	<epsilon>	<epsilon>	0.0451125642722
+14	19	LIKES	LIKES
+15	5	<epsilon>	<epsilon>	0.556024337122
+15
+16	5	<epsilon>	<epsilon>	0.556024337122
+16
+17	6	<epsilon>	<epsilon>	0.252361218166
+17	20	HATES	HATES
+18	6	<epsilon>	<epsilon>	0.635020284136
+18
+19	7	<epsilon>	<epsilon>	0.449143605223
+19	13	A	A
+20	8	<epsilon>	<epsilon>	0.447502745126
+20	21	THE	THE
+21	9	<epsilon>	<epsilon>	0.457548675706
+21	16	CAT	CAT

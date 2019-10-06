@@ -16,3 +16,9 @@ mkdir test && cd test
 Follow the sentence `i also little more .` token by token in the `fst.pdf` graph or `text.fst.conv` from the initial state
 , and add all the transition weights and final state weights.<br>
  The sum will equal to the probability of the given sentence, including `<s>` and `</s>` tokens.
+
+### Construct LG
+```
+cd hbka
+./run.sh
+```

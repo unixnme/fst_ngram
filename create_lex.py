@@ -12,7 +12,7 @@ def add_vocab(word:str, last_state:int):
         tokens = [str(st), str(last_state + 1), c, osym]
         lines.append(' '.join(tokens))
         last_state += 1
-    lines.append('%d %d %s %s' % (last_state, 0, '<epsilon>', '<epsilon>'))
+    lines.append('%d %d %s %s' % (last_state, 0, '<space>', '<epsilon>'))
     return last_state, lines
 
 

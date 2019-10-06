@@ -1,0 +1,17 @@
+digraph FST {
+rankdir = LR;
+size = "8.5,11";
+center = 1;
+orientation = Portrait;
+ranksep = "0.4";
+nodesep = "0.25";
+0 [label = "0", shape = circle, style = bold, fontsize = 14]
+	0 -> 1 [label = "jim:jim/1.386", fontsize = 14];
+	0 -> 1 [label = "jill:jill/0.693", fontsize = 14];
+	0 -> 1 [label = "bill:bill/1.386", fontsize = 14];
+1 [label = "1", shape = circle, style = solid, fontsize = 14]
+	1 -> 2 [label = "read:read/0.4", fontsize = 14];
+	1 -> 2 [label = "wrote:wrote/1.832", fontsize = 14];
+	1 -> 2 [label = "fled:fled/1.771", fontsize = 14];
+2 [label = "2", shape = doublecircle, style = solid, fontsize = 14]
+}

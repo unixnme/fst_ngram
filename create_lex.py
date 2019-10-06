@@ -1,26 +1,31 @@
 import sys
 
-def create_fst(word:str):
-    buffer = []
+def add_vocab(word:str, last_state:int):
+    lines = []
     for idx,c in enumerate(word):
         if idx == 0:
-            out = word
+            st = 0
+            osym = word
         else:
-            out = '<epsilon>'
-        tokens = [str(idx), str(idx+1), c, out]
-        buffer.append(' '.join(tokens))
-    buffer.append(str(idx+1))
-    return '\n'.join(buffer)
+            st = last_state
+            osym = '<epsilon>'
+        tokens = [str(st), str(last_state + 1), c, osym]
+        lines.append(' '.join(tokens))
+        last_state += 1
+    lines.append('%d %d %s %s' % (last_state, 0, '<epsilon>', '<epsilon>'))
+    return last_state, lines
+
 
 if __name__ == '__main__':
     corpus_file = sys.argv[1]
     with open(corpus_file, 'r') as f:
         vocabs = set(f.read().split())
-    print(vocabs)
 
     last_state = 0
     buffer = []
     for word in sorted(vocabs):
-        with open(word + '.text', 'w') as f:
-            f.write(create_fst(word))
+        last_state, lines = add_vocab(word, last_state)
+        buffer.extend(lines)
+    buffer.append('0')
+    print('\n'.join(buffer))
 

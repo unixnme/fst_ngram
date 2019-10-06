@@ -27,5 +27,6 @@ if __name__ == '__main__':
         last_state, lines = add_vocab(word, last_state)
         buffer.extend(lines)
     buffer.append('0')
+    buffer.append('0 0 <unk> <unk>')
     print('\n'.join(buffer))
 

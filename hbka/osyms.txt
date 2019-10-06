@@ -1,0 +1,10 @@
+<epsilon>	0
+<unk>	1
+I	2
+LOVE	3
+A	4
+CAT	5
+DOG	6
+LIKES	7
+HATES	8
+THE	9

@@ -29,5 +29,6 @@ if __name__ == '__main__':
     buffer.append('0')
     buffer.append('0 %d <unk> <unk>' % (last_state + 1))
     buffer.append('%d 0 <space> <epsilon>' % (last_state + 1))
+
     print('\n'.join(buffer))
 

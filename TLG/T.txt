@@ -1,0 +1,14 @@
+0 0 <blank> <epsilon>
+0 1 a a
+1 1 a <epsilon>
+1 0 <epsilon> <epsilon>
+0 2 b b
+2 2 b <epsilon>
+2 0 <epsilon> <epsilon>
+0 3 c c
+3 3 c <epsilon>
+3 0 <epsilon> <epsilon>
+0 4 <space> <space>
+4 4 <space> <space>
+4 0 <epsilon> <epsilon>
+0

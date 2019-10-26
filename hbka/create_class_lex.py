@@ -1,4 +1,6 @@
 import sys
+import json
+import numpy as np
 
 def add_vocab(word:str, id:str, weight:float, last_state:int):
     lines = []
@@ -21,12 +23,12 @@ def add_vocab(word:str, id:str, weight:float, last_state:int):
 if __name__ == '__main__':
     w2c_file = sys.argv[1]
     with open(w2c_file, 'r') as f:
-        vocabs = [line.split() for line in f]
+        w2c = json.load(f)
 
     last_state = 0
     buffer = []
-    for word, id, log_p in vocabs:
-        last_state, lines = add_vocab(word, id, -float(log_p), last_state)
+    for word, (id, log10_p) in sorted(w2c.items()):
+        last_state, lines = add_vocab(word, id, -log10_p * np.log(10), last_state)
         buffer.extend(lines)
     buffer.append('0')
     buffer.append('0 %d <unk> <unk>' % (last_state + 1))

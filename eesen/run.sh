@@ -48,7 +48,7 @@ utils/ctc_token_fst.py tokens.txt | fstcompile --isymbols=tokens.txt --osymbols=
 token_disambig_symbol=`grep \#0 tokens.txt | awk '{print $2}'`
 word_disambig_symbol=`grep \#0 words.txt | awk '{print $2}'`
 
-utils/make_lexicon_fst.pl --pron-probs lexiconp_disambig.txt 0.5 "$space_char" '#'$ndisambig | \
+utils/make_lexicon_fst.pl --pron-probs lexiconp_disambig.txt .9999 "$space_char" '#'$ndisambig | \
     fstcompile --isymbols=tokens.txt --osymbols=words.txt \
     --keep_isymbols=true --keep_osymbols=true |   \
     fstaddselfloops  "echo $token_disambig_symbol |" "echo $word_disambig_symbol |" | \
@@ -67,6 +67,6 @@ cat $arpa | \
     fstrmepsilon | fstarcsort --sort_type=ilabel > G2.fst
 
 fsttablecompose L.fst G2.fst | fstdeterminizestar --use-log=true | \
-  fstminimizeencoded | fstarcsort --sort_type=ilabel > LG2.fst || exit 1;
+  fstminimizeencoded | fstpushspecial | fstarcsort --sort_type=ilabel > LG2.fst || exit 1;
 fsttablecompose T.fst LG2.fst > TLG2.fst || exit 1;
 

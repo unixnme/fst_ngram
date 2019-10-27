@@ -43,6 +43,9 @@ cat lexiconp.txt | awk '{print $1}' | sort | uniq  | awk '
     printf("#0 %d\n", NR+1);
   }' > words.txt || exit 1;
 
+utils/ctc_token_fst.py tokens.txt | fstcompile --isymbols=tokens.txt --osymbols=tokens.txt \
+   --keep_isymbols=false --keep_osymbols=false | fstarcsort --sort_type=olabel > T.fst || exit 1;
+
 utils/make_lexicon_fst.pl --pron-probs lexiconp_disambig.txt 0.5 "$space_char" '#'$ndisambig | \
     fstcompile --isymbols=tokens.txt --osymbols=words.txt \
     --keep_isymbols=false --keep_osymbols=false |   \
@@ -60,4 +63,8 @@ cat $arpa | \
    utils/eps2disambig.pl | utils/s2eps.pl | fstcompile --isymbols=words.txt \
      --osymbols=words.txt  --keep_isymbols=false --keep_osymbols=false | \
     fstrmepsilon | fstarcsort --sort_type=ilabel > G2.fst
+
+fsttablecompose L.fst G2.fst | fstdeterminizestar --use-log=true | \
+  fstminimizeencoded | fstarcsort --sort_type=ilabel > LG2.fst || exit 1;
+fsttablecompose T.fst LG2.fst > TLG2.fst || exit 1;
 

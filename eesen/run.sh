@@ -19,3 +19,25 @@ ndisambig=`utils/add_lex_disambig.pl lexiconp.txt lexiconp_disambig.txt`
 ndisambig=$[$ndisambig+1]
 
 space_char="<SPACE>"
+
+cut -d' ' -f2- $dir/lexicon_words.txt | tr ' ' '\n' | sort -u > units_nosil.txt
+
+# The complete set of lexicon units, indexed by numbers starting from 1
+(echo '[BREATH]'; echo '[NOISE]'; echo '[COUGH]'; echo '[SMACK]';
+ echo '[UM]'; echo '[UH]'; echo '<SPACE>'; echo '<UNK>'; ) | cat - units_nosil.txt | awk '{print $1 " " NR}' > units.txt
+
+( for n in `seq 0 $ndisambig`; do echo '#'$n; done ) > disambig.list
+
+cat units.txt | awk '{print $1}' > units.list
+(echo '<eps>'; echo '<blk>';) | cat - units.list disambig.list | awk '{print $1 " " (NR-1)}' > tokens.txt
+
+cat lexiconp.txt | awk '{print $1}' | sort | uniq  | awk '
+  BEGIN {
+    print "<eps> 0";
+  }
+  {
+    printf("%s %d\n", $1, NR);
+  }
+  END {
+    printf("#0 %d\n", NR+1);
+  }' > words.txt || exit 1;

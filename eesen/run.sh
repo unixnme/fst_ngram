@@ -4,7 +4,7 @@ set -x
 dir="."
 arpa=$1
 
-ngramread --ARPA $arpa G.fst
+sed 's/<unk>/<UNK>/g' < $arpa | ngramread --ARPA - G.fst
 fstprint --save_isymbols=vocab.txt G.fst > /dev/null
 awk '{print $1}' < vocab.txt | grep -v "<.*>" | LANG= LC_ALL= sort | sed 's:([0-9])::g' | \
     perl -e 'while(<>){ chop; $str="$_"; foreach $p (split("", $_)) {$str="$str $p"}; print "$str\n";}' \
@@ -54,7 +54,7 @@ utils/make_lexicon_fst.pl --pron-probs lexiconp_disambig.txt 0.5 "$space_char" '
 
 
 oov_list=/dev/null
-cat $arpa | \
+sed 's/<unk>/<UNK>/g' < $arpa | \
    grep -v '<s> <s>' | \
    grep -v '</s> <s>' | \
    grep -v '</s> </s>' | \

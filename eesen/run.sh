@@ -2,8 +2,9 @@ set -e
 set -x
 
 dir="."
+arpa=$1
 
-ngramread --ARPA $1 G.fst
+ngramread --ARPA $arpa G.fst
 fstprint --save_isymbols=vocab.txt G.fst > /dev/null
 awk '{print $1}' < vocab.txt | grep -v "<.*>" | LANG= LC_ALL= sort | sed 's:([0-9])::g' | \
     perl -e 'while(<>){ chop; $str="$_"; foreach $p (split("", $_)) {$str="$str $p"}; print "$str\n";}' \
@@ -47,3 +48,16 @@ utils/make_lexicon_fst.pl --pron-probs lexiconp_disambig.txt 0.5 "$space_char" '
     --keep_isymbols=false --keep_osymbols=false |   \
     fstaddselfloops  "echo $token_disambig_symbol |" "echo $word_disambig_symbol |" | \
     fstarcsort --sort_type=olabel > L.fst || exit 1;
+
+
+oov_list=/dev/null
+cat $arpa | \
+   grep -v '<s> <s>' | \
+   grep -v '</s> <s>' | \
+   grep -v '</s> </s>' | \
+   arpa2fst - | fstprint | \
+   utils/remove_oovs.pl $oov_list | \
+   utils/eps2disambig.pl | utils/s2eps.pl | fstcompile --isymbols=words.txt \
+     --osymbols=words.txt  --keep_isymbols=false --keep_osymbols=false | \
+    fstrmepsilon | fstarcsort --sort_type=ilabel > G2.fst
+

@@ -1,12 +1,11 @@
 set -e
 set -x
 
-dir="."
 arpa=$1
 
-sed 's/<unk>/<UNK>/g' < $arpa | ngramread --ARPA - G.fst
+ngramread --ARPA $arpa G.fst
 fstprint --save_isymbols=vocab.txt G.fst > /dev/null
-awk '{print $1}' < vocab.txt | grep -v "<.*>" | LANG= LC_ALL= sort | sed 's:([0-9])::g' | \
+awk '{print $1}' < vocab.txt | grep -v "<s>" | grep -v "</s>" | grep -v "<epsilon>" | LANG= LC_ALL= sort | sed 's:([0-9])::g' | \
     perl -e 'while(<>){ chop; $str="$_"; foreach $p (split("", $_)) {$str="$str $p"}; print "$str\n";}' \
     > lexicon_words.txt
 
@@ -21,7 +20,7 @@ ndisambig=$[$ndisambig+1]
 
 space_char="<SPACE>"
 
-cut -d' ' -f2- $dir/lexicon_words.txt | tr ' ' '\n' | sort -u > units_nosil.txt
+cut -d' ' -f2- lexicon_words.txt | tr ' ' '\n' | sort -u > units_nosil.txt
 
 # The complete set of lexicon units, indexed by numbers starting from 1
 (echo '[BREATH]'; echo '[NOISE]'; echo '[COUGH]'; echo '[SMACK]';

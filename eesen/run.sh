@@ -45,6 +45,9 @@ cat lexiconp.txt | awk '{print $1}' | sort | uniq  | awk '
 utils/ctc_token_fst.py tokens.txt | fstcompile --isymbols=tokens.txt --osymbols=tokens.txt \
    --keep_isymbols=true --keep_osymbols=true | fstarcsort --sort_type=olabel > T.fst || exit 2;
 
+token_disambig_symbol=`grep \#0 tokens.txt | awk '{print $2}'`
+word_disambig_symbol=`grep \#0 words.txt | awk '{print $2}'`
+
 utils/make_lexicon_fst.pl --pron-probs lexiconp_disambig.txt 0.5 "$space_char" '#'$ndisambig | \
     fstcompile --isymbols=tokens.txt --osymbols=words.txt \
     --keep_isymbols=true --keep_osymbols=true |   \
@@ -53,7 +56,7 @@ utils/make_lexicon_fst.pl --pron-probs lexiconp_disambig.txt 0.5 "$space_char" '
 
 
 oov_list=/dev/null
-sed 's/<unk>/<UNK>/g' < $arpa | \
+cat $arpa | \
    grep -v '<s> <s>' | \
    grep -v '</s> <s>' | \
    grep -v '</s> </s>' | \

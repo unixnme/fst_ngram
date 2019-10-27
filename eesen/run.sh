@@ -41,3 +41,9 @@ cat lexiconp.txt | awk '{print $1}' | sort | uniq  | awk '
   END {
     printf("#0 %d\n", NR+1);
   }' > words.txt || exit 1;
+
+utils/make_lexicon_fst.pl --pron-probs lexiconp_disambig.txt 0.5 "$space_char" '#'$ndisambig | \
+    fstcompile --isymbols=tokens.txt --osymbols=words.txt \
+    --keep_isymbols=false --keep_osymbols=false |   \
+    fstaddselfloops  "echo $token_disambig_symbol |" "echo $word_disambig_symbol |" | \
+    fstarcsort --sort_type=olabel > L.fst || exit 1;

@@ -44,11 +44,11 @@ cat lexiconp.txt | awk '{print $1}' | sort | uniq  | awk '
   }' > words.txt || exit 1;
 
 utils/ctc_token_fst.py tokens.txt | fstcompile --isymbols=tokens.txt --osymbols=tokens.txt \
-   --keep_isymbols=false --keep_osymbols=false | fstarcsort --sort_type=olabel > T.fst || exit 1;
+   --keep_isymbols=true --keep_osymbols=true | fstarcsort --sort_type=olabel > T.fst || exit 2;
 
 utils/make_lexicon_fst.pl --pron-probs lexiconp_disambig.txt 0.5 "$space_char" '#'$ndisambig | \
     fstcompile --isymbols=tokens.txt --osymbols=words.txt \
-    --keep_isymbols=false --keep_osymbols=false |   \
+    --keep_isymbols=true --keep_osymbols=true |   \
     fstaddselfloops  "echo $token_disambig_symbol |" "echo $word_disambig_symbol |" | \
     fstarcsort --sort_type=olabel > L.fst || exit 1;
 
@@ -61,7 +61,7 @@ cat $arpa | \
    arpa2fst - | fstprint | \
    utils/remove_oovs.pl $oov_list | \
    utils/eps2disambig.pl | utils/s2eps.pl | fstcompile --isymbols=words.txt \
-     --osymbols=words.txt  --keep_isymbols=false --keep_osymbols=false | \
+     --osymbols=words.txt  --keep_isymbols=true --keep_osymbols=true | \
     fstrmepsilon | fstarcsort --sort_type=ilabel > G2.fst
 
 fsttablecompose L.fst G2.fst | fstdeterminizestar --use-log=true | \

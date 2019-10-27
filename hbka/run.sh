@@ -7,7 +7,7 @@ fstprint --save_isymbols=osyms.txt G.fst > /dev/null
 cat osyms.txt | awk '{print $1}' | grep -v '<.*>' > vocab.txt
 python ../create_lex.py vocab.txt > L.txt
 fstcompile --isymbols=ascii.syms --osymbols=osyms.txt --keep_isymbols --keep_osymbols L.txt | fstarcsort --sort_type=olabel - L.fst
-fstcompose L.fst G.fst | fstproject - | fstdeterminize - | fstminimize - | fstrmepsilon - | fstdeterminize - | fstminimize - | fstarcsort - LG.fst
+fstcompose L.fst G.fst | fstproject - | fstdeterminize - | fstminimize - LG.fst #| fstrmepsilon - | fstdeterminize - | fstminimize - | fstarcsort - LG.fst
 
 #fstcompile --isymbols=ascii.syms --osymbols=ascii.syms --keep_isymbols --keep_osymbols T.txt | fstarcsort --sort_type=olabel - T.fst
 #fstcompose T.fst LG.fst TLG.fst

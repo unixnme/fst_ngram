@@ -12,8 +12,10 @@ def add_vocab(word:str, last_state:int):
         tokens = [str(st), str(last_state + 1), c, osym]
         lines.append(' '.join(tokens))
         last_state += 1
-    lines.append('%d %d %s %s' % (last_state, 0, '<space>', '<epsilon>'))
-    return last_state, lines
+    lines.append('%d %d %s %s' % (last_state, last_state + 1, '<space>', '<epsilon>'))
+    lines.append('%d' % (last_state + 1))
+    lines.append('%d %d %s %s' % (last_state + 1, 0, '<epsilon>', '<epsilon>'))
+    return last_state + 1, lines
 
 
 if __name__ == '__main__':
@@ -26,9 +28,11 @@ if __name__ == '__main__':
     for word in sorted(vocabs):
         last_state, lines = add_vocab(word, last_state)
         buffer.extend(lines)
-    buffer.append('0')
-    buffer.append('0 %d <unk> <unk>' % (last_state + 1))
-    buffer.append('%d 0 <space> <epsilon>' % (last_state + 1))
+    lines.append('%d %d %s %s' % (0, last_state + 1, '<unk>', '<unk>'))
+    lines.append('%d %d %s %s' % (last_state + 1, last_state + 2, '<space>', '<epsilon>'))
+    lines.append('%d' % (last_state + 2))
+    lines.append('%d %d %s %s' % (last_state + 2, 0, '<epsilon>', '<epsilon>'))
+    
 
     print('\n'.join(buffer))
 

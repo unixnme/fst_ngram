@@ -1,38 +1,47 @@
-import sys
+import argparse
 
-def add_vocab(word:str, last_state:int):
-    lines = []
-    for idx,c in enumerate(word):
-        if idx == 0:
-            st = 0
-            osym = word
-        else:
-            st = last_state
-            osym = '<epsilon>'
-        tokens = [str(st), str(last_state + 1), c, osym]
-        lines.append(' '.join(tokens))
-        last_state += 1
-    lines.append('%d %d %s %s' % (last_state, last_state + 1, '<space>', '<epsilon>'))
-    lines.append('%d' % (last_state + 1))
-    lines.append('%d %d %s %s' % (last_state + 1, 0, '<epsilon>', '<epsilon>'))
-    return last_state + 1, lines
+def Transition(istate:int, ostate:int, ilabel:str, olabel:str) -> str:
+    return ('%d\t%d\t%s\t%s\n' % (istate, ostate, ilabel, olabel))
+
+def ExitState(state:int) -> str:
+    return ('%d\n' % state)
+
+
+def main():
+    parser = argparse.ArgumentParser('Create lexicon FST')
+    parser.add_argument('--vocab', type=str, default='/dev/stdin',
+                        help='''path to vocab file; if not provided, read from stdin
+                            Words should be separated by white space
+                            ''')
+    parser.add_argument('--output_prefix', type=str, default='lexicon',
+                        help='output prefix to write its txt and syms files')
+    args = parser.parse_args()
+
+    eps = '<epsilon>'
+    space = '<space>'
+    phi = '<phi>'
+    unk = '<unk>'
+
+    vocab = open(args.vocab).read().split()
+    with open(args.output_prefix + '.txt', 'w') as f:
+        start = 0
+        f.write(ExitState(start))
+        current = 0
+        for word in vocab:
+            for i,char in enumerate(word):
+                if i == 0:
+                    f.write(Transition(start, current + 1, char, word))
+                else:
+                    f.write(Transition(current, current + 1, char, eps))
+                current += 1
+            f.write(Transition(current, start, space, eps))
+        # any repetitive space shall be ignored
+        f.write(Transition(start, start, space, eps))
+
+    with open(args.output_prefix + '.syms', 'w') as f:
+        for i,word in enumerate([eps, phi, unk] + vocab):
+            f.write('%s\t%d\n' % (word, i))
 
 
 if __name__ == '__main__':
-    corpus_file = sys.argv[1]
-    with open(corpus_file, 'r') as f:
-        vocabs = set(f.read().split())
-
-    last_state = 0
-    buffer = []
-    for word in sorted(vocabs):
-        last_state, lines = add_vocab(word, last_state)
-        buffer.extend(lines)
-    lines.append('%d %d %s %s' % (0, last_state + 1, '<unk>', '<unk>'))
-    lines.append('%d %d %s %s' % (last_state + 1, last_state + 2, '<space>', '<epsilon>'))
-    lines.append('%d' % (last_state + 2))
-    lines.append('%d %d %s %s' % (last_state + 2, 0, '<epsilon>', '<epsilon>'))
-    
-
-    print('\n'.join(buffer))
-
+    main()

@@ -2,7 +2,7 @@
 
 Tokens graph maps CTC's output token to lexical character.
 
-`![alt text](T.png "T Graph")`
+![alt text](T.png "T Graph")
 
 Lexical graph maps alphabet characters to words.
 
